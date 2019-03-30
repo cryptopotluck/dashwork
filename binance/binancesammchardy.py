@@ -17,18 +17,18 @@ prices = client.get_all_tickers()
 
 # withdraw 100 ETH
 # check docs for assumptions around withdrawals
-from binance.exceptions import BinanceAPIException, BinanceWithdrawException
-try:
-    result = client.withdraw(
-        asset='ETH',
-        address='<eth_address>',
-        amount=100)
-except BinanceAPIException as e:
-    print(e)
-except BinanceWithdrawException as e:
-    print(e)
-else:
-    print("Success")
+# from binance.exceptions import BinanceAPIException, BinanceWithdrawException
+# try:
+#     result = client.withdraw(
+#         asset='ETH',
+#         address='<eth_address>',
+#         amount=100)
+# except BinanceAPIException as e:
+#     print(e)
+# except BinanceWithdrawException as e:
+#     print(e)
+# else:
+#     print("Success")
 
 # fetch list of withdrawals
 withdraws = client.get_withdraw_history()

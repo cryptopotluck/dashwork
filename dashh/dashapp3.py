@@ -21,4 +21,4 @@ app.layout = html.Div([dcc.Graph(id='scatterplot',
                                 )])
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(port=8051,)
