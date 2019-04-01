@@ -10,11 +10,6 @@ from pandas import DataFrame as df
 
 client = Client(keys.APIKey, keys.SecretKey)
 
-#time_res = client.get_server_time()
-#time_res = time_res['serverTime']
-#time_res = (time_res/1000)
-#readable = datetime.fromtimestamp(int(time_res))
-
 #Call on API for Data
 candles = client.get_klines(symbol='LTCUSDT', interval=Client.KLINE_INTERVAL_1DAY)
 #put data in a dataframe

@@ -16,26 +16,34 @@ from pycoingecko import CoinGeckoAPI
 client = Client(keys.APIKey, keys.SecretKey)
 
 
+
 from pandas import DataFrame as df
 
 
+def grab_assets_BTC_value():
+    cg = CoinGeckoAPI()
+
+    assets = ['ethereum', 'ripple', 'eos', 'litecoin', 'bitcoin-cash', 'binancecoin', 'cardano', 'stellar', 'tron', 'bitcoin-cash-sv', 'monero', 'iota', 'dash']
+
+    # 'holotoken', 'true-usd', 'omisego', 'qtum', 'lisk', 'decred', 'chainlink', '0x',
+    # 'bitcoin-gold', 'zilliqa', 'bitcoin-diamond', 'augur', 'icon',
+    # 'usd-coin', 'ethereum', 'dogecoin', 'tezos', 'vechain', 'waves', 'ontology', 'zcash', 'ripple', 'eos',
+    # 'litecoin', 'bitcoin-cash', 'tether', 'stellar', 'tron', 'binancecoin', 'bitcoin-cash-sv', 'cardano',
+    # 'monero', 'iota', 'dash', 'maker', 'neo', 'ethereum-classic', 'nem'
+
+    btc_asstet_list = []
+
+    for btcvalue in assets:
+        simple_price = cg.get_price(ids=btcvalue, vs_currencies='btc')
+        btc_asstet_dataframe = df(simple_price)
+        #btc_asstet_list.append(simple_price)
 
 
-#time_res = client.get_server_time()
-#time_res = time_res['serverTime']
-#time_res = (time_res/1000)
-#readable = datetime.fromtimestamp(int(time_res))
+    return btc_asstet_dataframe
 
-#Call on API for Data
-# trades = client.get_account()
-# http = urllib3.PoolManager(
-#      cert_reqs='CERT_REQUIRED',
-#      ca_certs=certifi.where())
-
+print(grab_assets_BTC_value())
 def grab_assets():
-    asset_list = ['BTC', 'LTC', 'BNB', 'WABI', 'EOS', 'MANA', 'EVX', 'CELR',
-                  'ETH', 'RVN', 'FET', 'ADA', 'BAT', 'ADA', 'XRP', 'QLC',
-                  'NULS', 'VIB', 'WTC', 'XRP', 'GXS']
+    asset_list = ['ETH', 'XRP', 'EOS', 'LTC', 'BCH', 'BNB', 'ADA', 'XLM', 'TRX', 'BSV', 'XMR', 'MIOTA', 'DASH']
 
     new_asset_list =[]
 
@@ -58,10 +66,10 @@ def grab_assets():
 
     asset_dataframe.set_index('asset', inplace=True)
 
-    BTCUSDprice = float(BTCUSDprice['price']['BTCUSDT'])
+    #BTCUSDprice = float(BTCUSDprice['price']['BTCUSDT'])
 
-    USD_value = asset_dataframe.astype(float) * BTCUSDprice
-    return USD_value
+    #USD_value = asset_dataframe.astype(float) * BTCUSDprice
+    return asset_dataframe
 
 
 def needs_work():
@@ -145,4 +153,3 @@ def round2():
     #new_BTC_list='NEO' in prices_dataframe.index.values
     return prices_dataframe
 
-print(grab_assets())
